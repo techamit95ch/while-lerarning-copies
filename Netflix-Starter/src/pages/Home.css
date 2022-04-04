@@ -4,7 +4,7 @@
 
 .topBanner {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   padding-top: 20px;
 }
 
@@ -18,23 +18,24 @@
 
 .connect {
   position: fixed;
-  right:0;
+  right: 0;
   padding: 15px;
   z-index: 3;
   display: flex;
-  gap:15px;
+  gap: 15px;
 }
 
 .scene {
-  width: 100vw;
+  min-width: 100vw;
+  width: 100%;
   height: calc(100vw * 0.5);
   color: white;
 }
 
 .sceneImg {
   width: 100vw;
-  position:relative;
-  top:0px;
+  position: relative;
+  top: 0px;
 }
 
 .sceneLogo {
@@ -59,7 +60,7 @@
   bottom: calc(100vw * 0.55);
   left: 6vw;
   display: flex;
-  gap: 10px
+  gap: 10px;
 }
 
 .title {
@@ -76,8 +77,8 @@
   padding-left: 10px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: start;
-  gap:2px;
+  justify-content: flex-start;
+  gap: 2px;
   row-gap: 20px;
   position: relative;
   top: -120px;
@@ -87,8 +88,8 @@
   padding-left: 3vw;
   display: flex;
   flex-wrap: wrap;
-  justify-content: start;
-  gap:2px;
+  justify-content: flex-start;
+  gap: 2px;
   row-gap: 20px;
   position: relative;
   top: -100px;
@@ -96,8 +97,9 @@
 
 .thumbnail {
   width: 19vw;
+  /* height: 19vw; */
   border-radius: 5px;
-  transition: transform .4s;
+  transition: transform 0.4s;
 }
 
 .thumbnail:hover {
@@ -116,14 +118,14 @@
 }
 
 .modalImg {
-  width:100%;
+  width: 100%;
 }
 
 .modalLogo {
   position: fixed;
   top: 360px;
   left: 6%;
-  width:30%;
+  width: 30%;
 }
 
 .modalPlayButton {
@@ -131,7 +133,7 @@
   top: 500px;
   left: 6%;
   display: flex;
-  gap: 10px
+  gap: 10px;
 }
 
 .details {
@@ -149,7 +151,7 @@
   letter-spacing: 0.5px;
 }
 
-.description{
+.description {
   padding-left: 50px;
   width: 60%;
   color: white;
@@ -157,7 +159,7 @@
 
 .detailedInfo {
   padding-left: 10%;
-  padding-right:5%;
+  padding-right: 5%;
   padding-top: 60px;
   width: 30%;
 }
@@ -167,11 +169,10 @@
   color: white;
 }
 
-
 .ownListContent {
   background-color: #161616;
   height: 100vh;
-  margin-top:150px;
+  margin-top: 150px;
 }
 
 .msg {

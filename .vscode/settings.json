@@ -1,0 +1,21 @@
+{
+  "eslint.alwaysShowStatus": true,
+  "eslint.debug": true,
+  "eslint.format.enable": true,
+  "eslint.lintTask.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.fixAll.eslint": true
+  },
+  "eslint.codeActionsOnSave.rules": [
+    "@typescript-eslint/semi",
+    "@typescript-eslint/indent",
+    "!@typescript-eslint/*",
+    "*"
+  ],
+  "eslint.rules.customizations": [
+    { "rule": "no-*", "severity": "info" },
+    { "rule": "!no-*", "severity": "downgrade" },
+    { "rule": "radix", "severity": "default" }
+  ]
+}
