@@ -1,0 +1,41 @@
+.welcomeContainer {
+  @apply flex w-full justify-center items-center;
+}
+.welcomeWrapper {
+  @apply flex md:flex-row flex-col justify-between items-start md:p-20 py-12 px-4;
+}
+.welcomeContent {
+  @apply flex flex-1 justify-start flex-col md:mr-10;
+}
+.welcomeHeading {
+  @apply text-3xl sm:text-5xl text-white text-gradient py-1;
+}
+.welcomeSubheading {
+  @apply text-left mt-5 text-white font-light md:w-9/12 w-11/12 text-base;
+}
+.welcomeConnetToWalletBtn {
+  @apply flex flex-row justify-center items-center  rounded-full text-white  cursor-pointer bg-[#2952e3] hover:bg-[#2546bd] my-5 p-3 font-semibold text-base;
+}
+.welcomeGrid {
+  @apply grid sm:grid-cols-3 grid-cols-2 w-full mt-10;
+}
+.welcomeGridLayout {
+  @apply min-h-[70px] sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-white text-white cursor-pointer;
+}
+.welcomeGridLeftTop {
+  @extend .welcomeGridLayout;
+  @apply rounded-tl-2xl;
+}
+.welcomeGridLeftBottom {
+  @extend .welcomeGridLayout;
+  @apply rounded-bl-2xl;
+}
+
+.welcomeGridRightTop {
+  @extend .welcomeGridLayout;
+  @apply rounded-tr-2xl;
+}
+.welcomeGridRightBottom {
+  @extend .welcomeGridLayout;
+  @apply rounded-br-2xl;
+}
