@@ -1,0 +1,5 @@
+service : {
+  getBalance: () -> (nat) query;
+  toUp: (nat) -> () oneway;
+  withDrawl: (nat) -> () oneway;
+}
