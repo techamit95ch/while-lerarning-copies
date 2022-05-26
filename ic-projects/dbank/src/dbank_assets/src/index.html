@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>dbank</title>
+    <base href="/" />
+    <link rel="icon" href="favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <main>
+      <section class="main-section">
+      <img src="logo.png" alt="DFINITY logo" />
+      <p>Current Balance :<span id="balance"></span> INR</p>
+      <form action="#">
+
+        <div class="form-group">
+        <label for="deposit">Amount to Deposit: &nbsp;</label>
+        <input id="deposit" alt="Deposit" name="deposit" type="number" />
+        </div>
+        <div class="form-group">
+        <label for="withdrawl">Amount to Withdrawl: &nbsp;</label>
+        <input id="withdrawl" alt="Withdrawl" name="withdrawl" type="number"  />
+        </div>
+        <button type="submit" id="button">Finalize Transaction</button>
+      </form>
+      </section>
+    </main>
+  </body>
+</html>
