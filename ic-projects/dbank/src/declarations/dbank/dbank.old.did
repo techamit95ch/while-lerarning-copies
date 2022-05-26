@@ -1,5 +1,6 @@
 service : {
-  getBalance: () -> (nat) query;
-  toUp: (nat) -> () oneway;
-  withDrawl: (nat) -> () oneway;
+  compound: () -> () oneway;
+  getBalance: () -> (float64) query;
+  toUp: (float64) -> () oneway;
+  withDrawl: (float64) -> () oneway;
 }
