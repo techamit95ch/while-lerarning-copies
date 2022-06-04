@@ -1,288 +1,165 @@
-fn main() {
-    // unsigned integer (u)
-    // u8, u16, u32, u64, u128
-    let x: u8 = 123;
+// create Enum For Color
+pub enum Color {
+    Red,
+    Green,
+    Blue,
+}
 
-    // signed integer (i)
-    // i8, i16, i32, i64, i128
-    let y: i8 = -123;
-
-    // float (f)
-    // f32, f64
-    let z: f64 = 0.1;
-
-    println!("x = {}, y = {}, z = {}", x, y, z);
-
-    // boolean (b)
-    let is_ok: bool = true;
-
-    // char (c)
-    let c: char = 'a';
-
-    // string (s)
-    let s: String = "hello".to_string();
-
-    println!("is_ok = {}, c = {}, s = {}", is_ok, c, s);
-
-    // array (a)
-    let a: [i32; 5] = [1, 2, 3, 4, 5];
-
-    // tuple (t)
-    let t: (i32, f64, u8) = (1, 0.1, 123);
-
-    println!(
-        "t = {:?},
-                t.0 = {},
-                t.1 = {},
-                t.2 = {}",
-        t, t.0, t.1, t.2
-    );
-
-    println!("a = {:?}", a);
-
-    // enum (e)
-    enum Color {
-        Red,
-        Green,
-        Blue,
-    }
-
-    let red: Color = Color::Red;
-    let green: Color = Color::Green;
-    let blue: Color = Color::Blue;
-
-    // struct (st)
-    struct Point {
-        x: i32,
-        y: i32,
-    }
-
-    let p: Point = Point { x: 1, y: 2 };
-
-    // function (f)
-    fn add(x: i32, y: i32) -> i32 {
-        x + y
-    }
-
-    // if
-    if is_ok {
-        println!("ok");
-    }
-
-    // while
-    let mut i = 0;
-    while i < 10 {
-        println!("{}", i);
-        i += 1;
-    }
-
-    // for
-    for i in 0..10 {
-        if i % 3 == 0 {
-            match red {
-                Color::Red => println!("red"),
-                Color::Green => println!("green"),
-                Color::Blue => println!("blue"),
-            }
-        } else if i % 3 == 1 {
-            match green {
-                Color::Red => println!("red"),
-                Color::Green => println!("green"),
-                Color::Blue => println!("blue"),
-            }
-        } else {
-            match blue {
-                Color::Red => println!("red"),
-                Color::Green => println!("green"),
-                Color::Blue => println!("blue"),
-            }
+impl std::fmt::Debug for Color {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::Red => write!(f, "Red"),
+            Self::Green => write!(f, "Green"),
+            Self::Blue => write!(f, "Blue"),
         }
     }
+}
 
-    // function
-    println!("{}", add(p.x, p.y));
+pub enum Message {
+    Quit,
+    Move { x: i32, y: i32 },
+    Write(String),
+    ChangeColor(i32, i32, i32),
+}
+// structure for point
+#[derive(Debug)]
+pub struct Point {
+    color: Color,
+    __x: i32,
+    __y: i32,
+}
 
-    struct Emoji {
-        __id: i32,
-
-        name: String,
+impl std::ops::DerefMut for Point {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.color
     }
+}
 
-    let emoji_dog = Emoji {
-        __id: 1,
-        name: "🐶".to_string(),
+impl std::ops::Deref for Point {
+    type Target = Color;
+
+    fn deref(&self) -> &Self::Target {
+        &self.color
+    }
+}
+
+impl Point {
+    /// Creates a new [`Point`].
+    pub fn new(__x: i32, __y: i32, color: Color) -> Self {
+        Self { __x, __y, color }
+    }
+}
+
+fn main() {
+    // Implement Color
+    //
+    // Implement the `Color` trait for the `Point` struct below. `Color` trait
+    // requires `fmt::Display` be implemented for `Point`.
+    //
+    // The output should look like:
+    // ```text
+    // Point(x: 2, y: 3, color: Color(Red, Green))
+    // ```
+    //
+    // You can refer to the `colors` module for the `Color` enum.
+    //
+    // Your `main` function should call `point` and pass in the correct parameters.
+    //
+    // Execute `rustlings hint colors` to get more information about the Color enum.
+    //
+    // You can search for the `colors` module to find the documentation for the Color enum.
+    //
+    // If you get stuck, you can find a solution in the Rust Book:
+    // https://doc.rust-lang.org/book/second-edition/ch03-02-defining-structs.html
+    //
+    // You can also ask for help on this exercise on the discussion forums.
+
+    let point: Point = Point {
+        __x: 2,
+        __y: 3,
+        color: Color::Red,
     };
 
-    let emoji_cat = Emoji {
-        __id: 2,
-        name: "🐱".to_string(),
-    };
-    let emoji_panda = Emoji {
-        __id: 3,
-        name: "🐼".to_string(),
-    };
-
-    let emojis = vec![emoji_dog, emoji_cat, emoji_panda];
-
-    for emoji in emojis {
-        println!("Emoji => {}", emoji.name);
+    match point.color {
+        Color::Red => println!("Red"),
+        Color::Green => println!("Green"),
+        Color::Blue => println!("Blue"),
     }
 
-    struct HappyFace {
-        face_code: String,
+    println!(r#"Point({:?})"#, point);
+    let _point_red: Point = Point::new(2, 3, Color::Red);
+    let point_green: Point = Point::new(2, 3, Color::Green);
+
+    match point_green {
+        Point {
+            color: Color::Red, ..
+        } => println!("Red Point"),
+        Point {
+            color: Color::Green,
+            ..
+        } => println!("Green Point"),
+        Point {
+            color: Color::Blue, ..
+        } => println!("Blue Point"),
     }
 
-    let smiley_face = HappyFace {
-        face_code: "😀".to_string(),
-    };
+    let mut _a = MyEnum::A;
+    let mut _b = MyEnum::B(100);
+    let mut _c = MyEnum::C(C { __x: 1, __y: 2 });
 
-    let frowny_face = HappyFace {
-        face_code: "😞".to_string(),
-    };
-
-    let happy_faces = vec![smiley_face, frowny_face];
-
-    for face in happy_faces {
-        println!("Face => {}", face.face_code);
-    }
-
-    let once_array: [u64; 10] = [1; 10];
-
-    let mut mutable_array: [u64; 10] = [1; 10];
-
-    mutable_array[0] = 2;
-
-    println!("once_array = {:?}, legth= {}", once_array, once_array.len());
-    println!("mutable_array = {:?}", mutable_array);
-
-    // destructuring
-    let (x, y, z) = t;
-
-    println!("x = {}, y = {}, z = {}", x, y, z);
-    // even if we don't need all the values, we can still destructure
-    let (x, _, z) = t;
-
-    println!("x = {}, z = {}", x, z);
-
-    // struct destructuring
-    let Point { x, y } = p;
-
-    println!("x = {}, y = {}", x, y);
-
-    // is Even ?
-    let even: bool = is_even(x);
-
-    println!("x is even ? {}", even);
-
-    // slices
-    let arr = [1, 2, 3, 4, 5];
-    let slice = &arr[1..3];
-    borrow_slicer(&arr, slice);
-
-    // string slice
-    let s: &str = "hello world";
-    let s_slice = &s[0..5];
-    borrow_str_slicer(s, s_slice);
-
-    let mut string: String = String::from("Hello World");
-    let string_slice = &string[0..5];
-    println!("string_slice = {}", string_slice);
-
-    string.push('!');
-    string.push_str("!");
-    let mut string_slice = string.as_str();
-    println!("string_slice = {}", string_slice);
-
-    string = string.replace("Hello", "Hi");
-    string_slice = string.as_str();
-    println!("string_slice = {}", string_slice);
-
-    // match
-    let i = 3;
-    match i {
-        0 => println!("Zer0"),
-        1 | 2 => println!("one | two"),
-        3..=4 => println!("three or four"),
-        _ => println!("something else"),
-    }
-
-    let __name: String = String::from("Parrot");
-    let __color: String = String::from("Green");
-    let __age: i32 = 1;
-
-    let bird: Bird = Bird { __name, __color };
-    bird.fly();
-    bird.rest();
-    bird.fly_again();
-
-    println!("{}", bird.can_lay_eggs());
+    println!("{:?}", (_a, _b, _c));
 }
 
-// Public Even Function Checking if a number is even or odd (returns a bool) (f)
-pub fn is_even(x: i32) -> bool {
-    x % 2 == 0
+// Enums
+
+#[derive(Debug)]
+struct C {
+    __x: i32,
+    __y: i32,
 }
 
-// Public Borrowing Slicer (s) (f)
-pub fn borrow_slicer(arr: &[i32], slice: &[i32]) {
-    println!("arr = {:?}", arr);
-    println!("slice = {:?}", slice);
-    println!("length: {}", slice.len());
-    println!("first element: {}", slice[0]);
-}
-// Public Borrowing Slicer (s) (f)
-pub fn borrow_str_slicer(s: &str, slice: &str) {
-    println!("s = {}", s);
-    println!("slice = {}", slice);
-    println!("length: {}", slice.len());
+enum MyEnum {
+    A,
+    B(i32),
+    C(C),
 }
 
-// Traits
-
-pub trait AnimalTrait {
-    fn is_animal(&self) -> bool;
-    fn can_fly(&self) -> bool;
-    fn can_walk(&self) -> bool;
-    fn can_swim(&self) -> bool;
-    fn can_sing(&self) -> bool;
-    fn has_name(&self) -> bool;
-}
-trait BirdTrait {
-    fn fly(&self);
-    fn fly_again(&self);
-    fn rest(&self);
-    fn can_lay_eggs(&self) -> bool;
-}
-
-// Structs with Traits
-
-pub struct Animal {
-    __name: String,
-}
-#[derive()]
-pub struct Bird {
-    __name: String,
-    __color: String,
-}
-
-// Implementations
-impl Animal {
-    pub fn new(name: String) -> Animal {
-        Animal { __name: name }
+impl std::fmt::Debug for MyEnum {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::A => write!(f, "A"),
+            Self::B(arg0) => f.debug_tuple("B").field(arg0).finish(),
+            Self::C(C { __x, __y }) => f.debug_struct("C").field("x", __x).field("y", __y).finish(),
+        }
     }
 }
-impl BirdTrait for Bird {
-    fn fly(&self) {
-        println!("{} can fly", self.__name);
+pub struct ColorStruct {
+    r: u8,
+    g: u8,
+    b: u8,
+}
+
+impl std::ops::DerefMut for ColorStruct {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.g
     }
-    fn fly_again(&self) {
-        println!("{} can fly again", self.__name);
+}
+
+impl std::ops::Deref for ColorStruct {
+    type Target = u8;
+
+    fn deref(&self) -> &Self::Target {
+        &self.r
     }
-    fn rest(&self) {
-        println!("{} rest", self.__name);
+}
+
+impl ColorStruct {
+    pub fn new(r: u8, g: u8, b: u8) -> ColorStruct {
+        ColorStruct { r, g, b }
     }
-    fn can_lay_eggs(&self) -> bool {
-        true
+
+    pub fn b_mut(&mut self) -> &mut u8 {
+        &mut self.b
     }
 }
 
